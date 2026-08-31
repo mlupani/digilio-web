@@ -1,3 +1,20 @@
+/**
+ * Absolute base URL of the deployed site. Used for `metadataBase`, canonical,
+ * `og:image` / `og:url` and JSON-LD — so it MUST match where the site actually lives
+ * or link previews (WhatsApp, etc.) break.
+ *
+ * Resolution order:
+ *  1. NEXT_PUBLIC_SITE_URL         — set this in Vercel once a custom domain is live
+ *  2. VERCEL_PROJECT_PRODUCTION_URL — Vercel's stable production domain, auto-injected
+ *  3. hardcoded Vercel URL          — current deployment
+ */
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://digilio-web.vercel.app")
+).replace(/\/$/, "");
+
 /** Single source of truth for contact data used across the site. */
 export const site = {
   name: "Digilio e Hijo",
@@ -11,7 +28,7 @@ export const site = {
   address: "Gerli, Avellaneda, Provincia de Buenos Aires",
   hours: "Lunes a viernes de 9 a 18 h",
   instagram: "https://instagram.com/",
-  url: "https://digilioehijo.com.ar",
+  url: siteUrl,
 };
 
 export function whatsappHref(text: string, number: string = site.whatsappNumber) {
