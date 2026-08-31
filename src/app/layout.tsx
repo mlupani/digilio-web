@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     siteName: "Digilio e Hijo",
+    url: site.url,
   },
   twitter: {
     card: "summary_large_image",
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(site.url),
   alternates: { canonical: "/" },
-  icons: { icon: "/favicon.ico" },
+  // Icons are picked up automatically from app/favicon.ico and app/icon.svg
 };
 
 export const viewport: Viewport = {
